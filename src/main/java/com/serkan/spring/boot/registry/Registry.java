@@ -8,6 +8,4 @@ public interface Registry<K, E extends RegistryElement<K>> {
     void registerElement(E element);
 
     E getElement(K key);
-
-    void deregisterAllElements();
 }
