@@ -27,6 +27,7 @@ public class BootApplicationTests {
     public void contextLoads() {
     }
 
+    @Test
     public void testOperations() {
         assertNotNull(mathOperationRegistry.getElement("add"));
         assertNotNull(mathOperationRegistry.getElement("multiply"));
