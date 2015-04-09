@@ -5,7 +5,12 @@
 package com.serkan.spring.boot.controller.impl;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.head;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.nio.charset.Charset;
 
@@ -43,5 +48,13 @@ public abstract class AbstractMvcTest<T> {
 
     protected MockMvc getMockMvc() {
         return mockMvc;
+    }
+
+    protected void expectMethodNotSupported(final String url, final String parameterName, final String... parameterValues) throws Exception {
+        mockMvc.perform(put(url).param(parameterName, parameterValues)).andExpect(status().isMethodNotAllowed());
+        mockMvc.perform(patch(url).param(parameterName, parameterValues)).andExpect(status().isMethodNotAllowed());
+        mockMvc.perform(delete(url).param(parameterName, parameterValues)).andExpect(status().isMethodNotAllowed());
+        // mockMvc.perform(options(url).param(parameterName, parameterValues)).andExpect(status().isMethodNotAllowed());
+        mockMvc.perform(head(url).param(parameterName, parameterValues)).andExpect(status().isMethodNotAllowed());
     }
 }

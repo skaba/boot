@@ -23,4 +23,14 @@ public class TextOperationControllerMvcTest extends AbstractMvcTest<TextOperatio
     public void testInvalidOperator() throws Exception {
         getMockMvc().perform(get("/text/invalid").param("w", "foo", "bar")).andExpect(status().is4xxClientError());
     }
+
+    @Test
+    public void testUnacceptableResponse() throws Exception {
+        getMockMvc().perform(get("/text/concat").param("w", "foo", "bar").accept(APPLICATION_JSON_UTF8)).andExpect(status().isNotAcceptable()).andExpect(content().string(""));
+    }
+
+    @Test
+    public void testUnSupportedethods() throws Exception {
+        expectMethodNotSupported("/text/concat", "w", "foo", "bar");
+    }
 }

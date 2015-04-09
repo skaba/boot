@@ -4,6 +4,7 @@
  */
 package com.serkan.spring.boot.controller.impl;
 
+import static org.springframework.http.MediaType.TEXT_PLAIN;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -42,5 +43,15 @@ public class MathOperationControllerMvcTest extends AbstractMvcTest<MathOperatio
     @Ignore
     public void testInvalidOperator() throws Exception {
         getMockMvc().perform(get("/math/invalid").param("n", "8", "2")).andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void testUnacceptableResponse() throws Exception {
+        getMockMvc().perform(get("/math/average").param("n", "8", "2").accept(TEXT_PLAIN)).andExpect(status().isNotAcceptable()).andExpect(content().string(""));
+    }
+
+    @Test
+    public void testUnSupportedethods() throws Exception {
+        expectMethodNotSupported("/math/average", "n", "8", "2");
     }
 }

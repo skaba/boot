@@ -17,4 +17,14 @@ public class HelloControllerMvcTest extends AbstractMvcTest<HelloController> {
     public void testHello() throws Exception {
         getMockMvc().perform(get("/hello").param("name", "Serkan")).andExpect(status().isOk()).andExpect(content().string("Hello Serkan")).andExpect(content().contentType(TEXT_PLAIN));
     }
+
+    @Test
+    public void testUnacceptableResponse() throws Exception {
+        getMockMvc().perform(get("/hello").param("name", "Serkan").accept(APPLICATION_JSON_UTF8)).andExpect(status().isNotAcceptable()).andExpect(content().string(""));
+    }
+
+    @Test
+    public void testUnSupportedethods() throws Exception {
+        expectMethodNotSupported("/hello", "name", "serkan");
+    }
 }
