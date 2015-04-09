@@ -4,6 +4,7 @@
  */
 package com.serkan.spring.boot.controller.impl;
 
+import static org.junit.Assert.assertEquals;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.head;
@@ -18,7 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +75,7 @@ public abstract class AbstractMvcTest {
         urlVariables.put(parameterName, parameterValuesList);
 
         ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:8080" + path, String.class, urlVariables);
-        Assert.assertEquals(expected, response.getStatusCode());
+        assertEquals(expected, response.getStatusCode());
         // Below doesn't work
         // getMockMvc().perform(get("/math/invalid").param("n", "8", "2")).andExpect(status().isInternalServerError());
     }
