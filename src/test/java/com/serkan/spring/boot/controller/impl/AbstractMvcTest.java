@@ -5,6 +5,7 @@
 package com.serkan.spring.boot.controller.impl;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import java.nio.charset.Charset;
 
@@ -37,7 +38,7 @@ public abstract class AbstractMvcTest<T> {
 
     @Before
     public void setUp() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).alwaysDo(print()).build();
     }
 
     protected MockMvc getMockMvc() {
