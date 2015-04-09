@@ -6,6 +6,9 @@ package com.serkan.spring.boot.operation;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.serkan.spring.boot.operation.impl.OperationServiceRegistry;
 import com.serkan.spring.boot.registry.RegistryElement;
 
@@ -15,6 +18,8 @@ import com.serkan.spring.boot.registry.RegistryElement;
  * @param <T> Input and output type of the operation
  */
 public abstract class Operation<T> implements RegistryElement<String> {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Operation.class);
 
     /** Name of the operation **/
     private final String name;
@@ -37,6 +42,7 @@ public abstract class Operation<T> implements RegistryElement<String> {
      */
     @Override
     public String getKey() {
+        LOGGER.debug("getKey()");
         return name;
     }
 
@@ -46,6 +52,7 @@ public abstract class Operation<T> implements RegistryElement<String> {
      * @return Operation name
      */
     public String getName() {
+        LOGGER.debug("getName()");
         return name;
     }
 

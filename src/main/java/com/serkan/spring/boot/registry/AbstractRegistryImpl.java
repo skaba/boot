@@ -7,6 +7,8 @@ package com.serkan.spring.boot.registry;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextClosedEvent;
 
@@ -17,6 +19,7 @@ import org.springframework.context.event.ContextClosedEvent;
  * @param <E>
  */
 public abstract class AbstractRegistryImpl<K, E extends RegistryElement<K>> implements Registry<K, E>, ApplicationListener<ContextClosedEvent> {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractRegistryImpl.class);
     /** Storage map **/
     private final Map<K, E> elements = new HashMap<>();
 
@@ -25,6 +28,7 @@ public abstract class AbstractRegistryImpl<K, E extends RegistryElement<K>> impl
      */
     @Override
     public void registerElement(final E element) {
+        LOGGER.debug("registerElement({})", element);
         elements.put(element.getKey(), element);
     }
 
@@ -33,6 +37,7 @@ public abstract class AbstractRegistryImpl<K, E extends RegistryElement<K>> impl
      */
     @Override
     public E getElement(final K key) {
+        LOGGER.debug("getElement({})", key);
         return elements.get(key);
     }
 
@@ -41,6 +46,7 @@ public abstract class AbstractRegistryImpl<K, E extends RegistryElement<K>> impl
      */
     @Override
     public void onApplicationEvent(final ContextClosedEvent event) {
+        LOGGER.debug("onApplicationEvent({})", event);
         elements.clear();
     }
 }

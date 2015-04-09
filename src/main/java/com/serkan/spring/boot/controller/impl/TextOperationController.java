@@ -9,6 +9,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +26,7 @@ import com.serkan.spring.boot.operation.impl.OperationServiceRegistry;
  */
 @RestController
 public class TextOperationController extends OperationController<String> {
+    private static final Logger LOGGER = LoggerFactory.getLogger(TextOperationController.class);
 
     /**
      * Autowired constructor
@@ -43,6 +46,7 @@ public class TextOperationController extends OperationController<String> {
     public String operation(@RequestParam(value = "w", required = false, defaultValue = "")
     final List<String> words, @PathVariable("operator")
     final String operatorName) {
+        LOGGER.debug("operation({},{})", words, operatorName);
         return super.operation(words, operatorName);
     }
 }

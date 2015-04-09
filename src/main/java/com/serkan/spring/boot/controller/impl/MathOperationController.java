@@ -10,6 +10,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +26,7 @@ import com.serkan.spring.boot.operation.impl.OperationServiceRegistry;
  */
 @RestController
 public class MathOperationController extends OperationController<BigDecimal> {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MathOperationController.class);
 
     /**
      * Autowired constructor
@@ -43,6 +46,7 @@ public class MathOperationController extends OperationController<BigDecimal> {
     public BigDecimal operation(@RequestParam(value = "n", required = false, defaultValue = "")
     final List<BigDecimal> numbers, @PathVariable("operator")
     final String operatorName) {
+        LOGGER.debug("operation({},{})", numbers, operatorName);
         return super.operation(numbers, operatorName);
     }
 }
