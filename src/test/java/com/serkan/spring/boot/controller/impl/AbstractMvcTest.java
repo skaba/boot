@@ -77,6 +77,6 @@ public abstract class AbstractMvcTest {
         ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:8080" + path, String.class, urlVariables);
         assertEquals(expected, response.getStatusCode());
         // Below doesn't work
-        // getMockMvc().perform(get("/math/invalid").param("n", "8", "2")).andExpect(status().isInternalServerError());
+        // getMockMvc().perform(get(path).param(parameterName, parameterValues)).andExpect(status().is(expected.value()));
     }
 }
