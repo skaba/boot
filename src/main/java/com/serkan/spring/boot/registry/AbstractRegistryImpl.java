@@ -19,7 +19,7 @@ import org.springframework.context.event.ContextClosedEvent;
  * @param <E>
  */
 public abstract class AbstractRegistryImpl<K, E extends RegistryElement<K>> implements Registry<K, E>, ApplicationListener<ContextClosedEvent> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractRegistryImpl.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
     /** Storage map **/
     private final Map<K, E> elements = new HashMap<>();
 

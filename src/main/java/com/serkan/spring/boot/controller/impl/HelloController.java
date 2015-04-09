@@ -31,7 +31,7 @@ public class HelloController {
     @RequestMapping(value = "/hello", produces = MediaType.TEXT_PLAIN_VALUE, method = { GET, POST })
     public String hello(@RequestParam(required = false, defaultValue = "Stranger")
     final String name) {
-        LOGGER.debug("hello({})", name);
+        LOGGER.debug("hello(\"{}\")", name);
         return "Hello " + name;
     }
 }
