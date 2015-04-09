@@ -4,6 +4,9 @@
  */
 package com.serkan.spring.boot.controller.impl;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +23,7 @@ public class HelloController {
      * @param name Name of the person
      * @return Hello output
      */
-    @RequestMapping(value = "/hello", produces = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "/hello", produces = MediaType.TEXT_PLAIN_VALUE, method = { GET, POST })
     public String hello(@RequestParam(required = false, defaultValue = "Stranger")
     final String name) {
         return "Hello " + name;

@@ -4,6 +4,9 @@
  */
 package com.serkan.spring.boot.controller.impl;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +39,7 @@ public class TextOperationController extends OperationController<String> {
      * <code>/text/{operator}</code> binding. Runs math operations {@inheritDoc}
      */
     @Override
-    @RequestMapping(value = "/text/{operator}", produces = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "/text/{operator}", produces = MediaType.TEXT_PLAIN_VALUE, method = { GET, POST })
     public String operation(@RequestParam(value = "w", required = false, defaultValue = "")
     final List<String> words, @PathVariable("operator")
     final String operatorName) {

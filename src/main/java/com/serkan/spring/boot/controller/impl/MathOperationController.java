@@ -4,6 +4,9 @@
  */
 package com.serkan.spring.boot.controller.impl;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -36,7 +39,7 @@ public class MathOperationController extends OperationController<BigDecimal> {
      * <code>/math/{operator}</code> binding. Runs math operations {@inheritDoc}
      */
     @Override
-    @RequestMapping("/math/{operator}")
+    @RequestMapping(value = "/math/{operator}", method = { GET, POST })
     public BigDecimal operation(@RequestParam(value = "n", required = false, defaultValue = "")
     final List<BigDecimal> numbers, @PathVariable("operator")
     final String operatorName) {
