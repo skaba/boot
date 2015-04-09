@@ -23,6 +23,6 @@ public class AverageOperation extends Operation<BigDecimal> {
 
     @Override
     public BigDecimal calculate(final List<BigDecimal> input) {
-        return BigDecimal.valueOf(input.stream().mapToDouble(BigDecimal::doubleValue).average().orElse(0));
+        return BigDecimal.valueOf(input.parallelStream().mapToDouble(BigDecimal::doubleValue).average().orElse(0));
     }
 }

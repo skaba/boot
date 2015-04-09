@@ -27,7 +27,7 @@ public class AverageOperationITTest {
     private Operation<BigDecimal> averageOperation;
 
     @Test
-    public void testAddOperation() {
+    public void testAverageOperation() {
         assertEquals(BigDecimal.valueOf(3d), averageOperation.calculate(Arrays.asList(BigDecimal.valueOf(5), BigDecimal.valueOf(2), BigDecimal.valueOf(2))));
     }
 }
