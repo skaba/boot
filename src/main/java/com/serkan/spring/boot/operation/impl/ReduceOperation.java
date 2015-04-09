@@ -9,6 +9,11 @@ import java.util.List;
 import com.serkan.spring.boot.operation.Operation;
 import com.serkan.spring.boot.operator.Operator;
 
+/**
+ * Operation that reduces the list by an operator
+ * 
+ * @param <T> Type of the input and output values
+ */
 public class ReduceOperation<T> extends Operation<T> {
 
     private final Operator<T> operator;

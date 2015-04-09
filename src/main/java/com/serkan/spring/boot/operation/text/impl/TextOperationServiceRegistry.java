@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 
 import com.serkan.spring.boot.operation.impl.OperationServiceRegistry;
 
+/**
+ * Registry for String operations
+ */
 @Component
 public class TextOperationServiceRegistry extends OperationServiceRegistry<String> {
 }

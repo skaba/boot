@@ -16,14 +16,25 @@ import org.springframework.web.bind.annotation.RestController;
 import com.serkan.spring.boot.controller.OperationController;
 import com.serkan.spring.boot.operation.impl.OperationServiceRegistry;
 
+/**
+ * Controller for text operations
+ */
 @RestController
 public class TextOperationController extends OperationController<String> {
 
+    /**
+     * Autowired constructor
+     * 
+     * @param registry Operation registry
+     */
     @Autowired
     public TextOperationController(final OperationServiceRegistry<String> registry) {
         super(registry);
     }
 
+    /**
+     * <code>/text/{operator}</code> binding. Runs math operations {@inheritDoc}
+     */
     @Override
     @RequestMapping(value = "/text/{operator}", produces = MediaType.TEXT_PLAIN_VALUE)
     public String operation(@RequestParam(value = "w", required = false, defaultValue = "")

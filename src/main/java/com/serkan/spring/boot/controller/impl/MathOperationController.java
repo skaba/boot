@@ -16,14 +16,25 @@ import org.springframework.web.bind.annotation.RestController;
 import com.serkan.spring.boot.controller.OperationController;
 import com.serkan.spring.boot.operation.impl.OperationServiceRegistry;
 
+/**
+ * Controller for math operations
+ */
 @RestController
 public class MathOperationController extends OperationController<BigDecimal> {
 
+    /**
+     * Autowired constructor
+     * 
+     * @param registry Operation registry
+     */
     @Autowired
     public MathOperationController(final OperationServiceRegistry<BigDecimal> registry) {
         super(registry);
     }
 
+    /**
+     * <code>/math/{operator}</code> binding. Runs math operations {@inheritDoc}
+     */
     @Override
     @RequestMapping("/math/{operator}")
     public BigDecimal operation(@RequestParam(value = "n", required = false, defaultValue = "")

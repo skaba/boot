@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 
 import com.serkan.spring.boot.operation.impl.OperationServiceRegistry;
 
+/**
+ * Registry for decimal operations
+ */
 @Component
 public class MathOperationServiceRegistry extends OperationServiceRegistry<BigDecimal> {
 }
