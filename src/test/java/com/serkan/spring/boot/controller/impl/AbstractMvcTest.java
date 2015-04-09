@@ -32,7 +32,7 @@ import com.serkan.spring.boot.BootApplication;
 @SpringApplicationConfiguration(classes = BootApplication.class)
 @WebAppConfiguration
 @IntegrationTest({ "server.port=8080" })
-public abstract class AbstractMvcTest<T> {
+public abstract class AbstractMvcTest {
 
     public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(APPLICATION_JSON.getType(), APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 

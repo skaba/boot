@@ -11,7 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.junit.Test;
 
-public class HelloControllerMvcTest extends AbstractMvcTest<HelloController> {
+public class HelloControllerMvcTest extends AbstractMvcTest {
 
     @Test
     public void testHello() throws Exception {

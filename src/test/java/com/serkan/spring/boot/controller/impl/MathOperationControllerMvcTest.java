@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.Ignore;
 import org.junit.Test;
 
-public class MathOperationControllerMvcTest extends AbstractMvcTest<MathOperationController> {
+public class MathOperationControllerMvcTest extends AbstractMvcTest {
 
     @Test
     public void testAdd() throws Exception {

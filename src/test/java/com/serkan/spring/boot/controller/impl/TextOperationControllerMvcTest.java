@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.Ignore;
 import org.junit.Test;
 
-public class TextOperationControllerMvcTest extends AbstractMvcTest<TextOperationController> {
+public class TextOperationControllerMvcTest extends AbstractMvcTest {
     @Test
     public void testConcat() throws Exception {
         getMockMvc().perform(get("/text/concat").param("w", "foo", "bar")).andExpect(status().isOk()).andExpect(content().string("foobar")).andExpect(content().contentType(TEXT_PLAIN));
