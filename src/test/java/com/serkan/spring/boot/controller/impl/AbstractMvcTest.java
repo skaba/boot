@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.head;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -53,7 +54,7 @@ public abstract class AbstractMvcTest {
 
     @Before
     public void setUp() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).alwaysDo(print()).build();
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).dispatchOptions(true).alwaysDo(print()).build();
     }
 
     protected MockMvc getMockMvc() {
@@ -64,8 +65,7 @@ public abstract class AbstractMvcTest {
         mockMvc.perform(put(url).param(parameterName, parameterValues)).andExpect(status().isMethodNotAllowed());
         mockMvc.perform(patch(url).param(parameterName, parameterValues)).andExpect(status().isMethodNotAllowed());
         mockMvc.perform(delete(url).param(parameterName, parameterValues)).andExpect(status().isMethodNotAllowed());
-        // TODO: Figure out why options is always supported
-        // mockMvc.perform(options(url).param(parameterName, parameterValues)).andExpect(status().isMethodNotAllowed());
+        mockMvc.perform(options(url).param(parameterName, parameterValues)).andExpect(status().isMethodNotAllowed());
         mockMvc.perform(head(url).param(parameterName, parameterValues)).andExpect(status().isMethodNotAllowed());
     }
 
