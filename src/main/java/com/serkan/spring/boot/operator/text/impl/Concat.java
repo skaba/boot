@@ -22,7 +22,7 @@ public class Concat implements Operator<String> {
      */
     @Override
     public String apply(final String t, final String u) {
-        LOGGER.debug("apply({},{})", t, u);
+        LOGGER.debug("apply(\"{}\",\"{}\")", t, u);
         return t + u;
     }
 

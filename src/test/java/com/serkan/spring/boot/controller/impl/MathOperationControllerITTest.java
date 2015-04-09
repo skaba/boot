@@ -25,31 +25,31 @@ public class MathOperationControllerITTest {
 
     @Test
     public void testAdd() {
-        assertEquals(BigDecimal.ONE, controller.operation(Arrays.asList(BigDecimal.ZERO, BigDecimal.ONE), "add"));
+        assertEquals(BigDecimal.ONE, controller.operation("add", Arrays.asList(BigDecimal.ZERO, BigDecimal.ONE)));
     }
 
     @Test
     public void testSubtract() {
-        assertEquals(BigDecimal.valueOf(-1), controller.operation(Arrays.asList(BigDecimal.ZERO, BigDecimal.ONE), "subtract"));
+        assertEquals(BigDecimal.valueOf(-1), controller.operation("subtract", Arrays.asList(BigDecimal.ZERO, BigDecimal.ONE)));
     }
 
     @Test
     public void testDivide() {
-        assertEquals(BigDecimal.valueOf(4), controller.operation(Arrays.asList(BigDecimal.valueOf(8), BigDecimal.valueOf(2)), "divide"));
+        assertEquals(BigDecimal.valueOf(4), controller.operation("divide", Arrays.asList(BigDecimal.valueOf(8), BigDecimal.valueOf(2))));
     }
 
     @Test
     public void testMultiply() {
-        assertEquals(BigDecimal.valueOf(16), controller.operation(Arrays.asList(BigDecimal.valueOf(8), BigDecimal.valueOf(2)), "multiply"));
+        assertEquals(BigDecimal.valueOf(16), controller.operation("multiply", Arrays.asList(BigDecimal.valueOf(8), BigDecimal.valueOf(2))));
     }
 
     @Test
     public void testAverage() {
-        assertEquals(BigDecimal.valueOf(5d), controller.operation(Arrays.asList(BigDecimal.valueOf(8), BigDecimal.valueOf(2)), "average"));
+        assertEquals(BigDecimal.valueOf(5d), controller.operation("average", Arrays.asList(BigDecimal.valueOf(8), BigDecimal.valueOf(2))));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidOperator() {
-        controller.operation(Arrays.asList(BigDecimal.valueOf(8), BigDecimal.valueOf(2)), "invalid");
+        controller.operation("invalid", Arrays.asList(BigDecimal.valueOf(8), BigDecimal.valueOf(2)));
     }
 }

@@ -37,7 +37,7 @@ public abstract class OperationController<T> {
      * @param operatorName Operator
      * @return Result of the operation
      */
-    public T operation(final List<T> elements, final String operatorName) {
+    public T operation(final String operatorName, final List<T> elements) {
         Operation<T> service = registry.getElement(operatorName);
         Assert.notNull(service, "Unknown operator: " + operatorName);
         LOGGER.debug("{} {} elements", service.getKey(), elements.size());

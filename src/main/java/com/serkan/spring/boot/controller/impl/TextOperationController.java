@@ -43,10 +43,10 @@ public class TextOperationController extends OperationController<String> {
      */
     @Override
     @RequestMapping(value = "/text/{operator}", produces = MediaType.TEXT_PLAIN_VALUE, method = { GET, POST })
-    public String operation(@RequestParam(value = "w", required = false, defaultValue = "")
-    final List<String> words, @PathVariable("operator")
-    final String operatorName) {
-        LOGGER.debug("operation({},{})", words, operatorName);
-        return super.operation(words, operatorName);
+    public String operation(@PathVariable("operator")
+    final String operatorName, @RequestParam(value = "w", required = false, defaultValue = "")
+    final List<String> words) {
+        LOGGER.debug("operation(\"{}\",{})", operatorName, words);
+        return super.operation(operatorName, words);
     }
 }

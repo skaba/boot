@@ -43,10 +43,10 @@ public class MathOperationController extends OperationController<BigDecimal> {
      */
     @Override
     @RequestMapping(value = "/math/{operator}", method = { GET, POST })
-    public BigDecimal operation(@RequestParam(value = "n", required = false, defaultValue = "")
-    final List<BigDecimal> numbers, @PathVariable("operator")
-    final String operatorName) {
-        LOGGER.debug("operation({},{})", numbers, operatorName);
-        return super.operation(numbers, operatorName);
+    public BigDecimal operation(@PathVariable("operator")
+    final String operatorName, @RequestParam(value = "n", required = false, defaultValue = "")
+    final List<BigDecimal> numbers) {
+        LOGGER.debug("operation(\"{}\",{})", operatorName, numbers);
+        return super.operation(operatorName, numbers);
     }
 }

@@ -24,11 +24,11 @@ public class TextOperationControllerITTest {
 
     @Test
     public void testConcat() {
-        assertEquals("foobar", controller.operation(Arrays.asList("foo", "bar"), "concat"));
+        assertEquals("foobar", controller.operation("concat", Arrays.asList("foo", "bar")));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidOperator() {
-        controller.operation(Arrays.asList("foo", "bar"), "invalid");
+        controller.operation("invalid", Arrays.asList("foo", "bar"));
     }
 }
