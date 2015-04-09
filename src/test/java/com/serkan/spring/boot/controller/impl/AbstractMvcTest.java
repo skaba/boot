@@ -26,9 +26,6 @@ public abstract class AbstractMvcTest<T> {
     @Autowired
     private EmbeddedWebApplicationContext webApplicationContext;
 
-    @Autowired
-    protected T controller;
-
     private MockMvc mockMvc;
 
     @Before
