@@ -59,6 +59,5 @@ public class BootApplication {
      */
     public static void main(final String[] args) {
         SpringApplication.run(BootApplication.class, args);
-
     }
 }
