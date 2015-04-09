@@ -11,6 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.junit.Ignore;
 import org.junit.Test;
+import org.springframework.http.HttpStatus;
 
 public class TextOperationControllerMvcTest extends AbstractMvcTest {
     @Test
@@ -21,7 +22,7 @@ public class TextOperationControllerMvcTest extends AbstractMvcTest {
     @Test
     @Ignore
     public void testInvalidOperator() throws Exception {
-        getMockMvc().perform(get("/text/invalid").param("w", "foo", "bar")).andExpect(status().is4xxClientError());
+        getAndExpectStatus("/text/foo", "w", HttpStatus.INTERNAL_SERVER_ERROR, "foo", "bar");
     }
 
     @Test

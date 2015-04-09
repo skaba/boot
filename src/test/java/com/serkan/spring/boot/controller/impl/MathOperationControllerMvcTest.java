@@ -9,8 +9,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.junit.Ignore;
 import org.junit.Test;
+import org.springframework.http.HttpStatus;
 
 public class MathOperationControllerMvcTest extends AbstractMvcTest {
 
@@ -40,9 +40,8 @@ public class MathOperationControllerMvcTest extends AbstractMvcTest {
     }
 
     @Test
-    @Ignore
     public void testInvalidOperator() throws Exception {
-        getMockMvc().perform(get("/math/invalid").param("n", "8", "2")).andExpect(status().is4xxClientError());
+        getAndExpectStatus("/math/invalid", "n", HttpStatus.INTERNAL_SERVER_ERROR, "8", "2");
     }
 
     @Test

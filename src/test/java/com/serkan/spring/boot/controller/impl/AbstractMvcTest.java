@@ -13,28 +13,38 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.embedded.EmbeddedWebApplicationContext;
-import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.TestRestTemplate;
+import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.client.RestTemplate;
 
 import com.serkan.spring.boot.BootApplication;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = BootApplication.class)
-@WebAppConfiguration
-@IntegrationTest({ "server.port=8080" })
+@WebIntegrationTest({ "server.port=8080" })
+@EnableAutoConfiguration
 public abstract class AbstractMvcTest {
 
     public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(APPLICATION_JSON.getType(), APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
+    private final RestTemplate restTemplate = new TestRestTemplate();
 
     @Autowired
     private EmbeddedWebApplicationContext webApplicationContext;
@@ -57,5 +67,16 @@ public abstract class AbstractMvcTest {
         // TODO: Figure out why options is always supported
         // mockMvc.perform(options(url).param(parameterName, parameterValues)).andExpect(status().isMethodNotAllowed());
         mockMvc.perform(head(url).param(parameterName, parameterValues)).andExpect(status().isMethodNotAllowed());
+    }
+
+    protected void getAndExpectStatus(final String path, final String parameterName, final HttpStatus expected, final String... parameterValues) {
+        Map<String, List<String>> urlVariables = new HashMap<>();
+        List<String> parameterValuesList = Arrays.asList(parameterValues);
+        urlVariables.put(parameterName, parameterValuesList);
+
+        ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:8080" + path, String.class, urlVariables);
+        Assert.assertEquals(expected, response.getStatusCode());
+        // Below doesn't work
+        // getMockMvc().perform(get("/math/invalid").param("n", "8", "2")).andExpect(status().isInternalServerError());
     }
 }
