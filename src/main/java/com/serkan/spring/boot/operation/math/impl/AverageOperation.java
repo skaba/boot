@@ -37,7 +37,7 @@ public class AverageOperation extends Operation<BigDecimal> {
      */
     @Override
     public BigDecimal calculate(final List<BigDecimal> input) {
-        LOGGER.debug("{}: calculate({},{})", getName(), input);
+        LOGGER.debug("{}: calculate({})", getName(), input);
         return BigDecimal.valueOf(input.parallelStream().mapToDouble(BigDecimal::doubleValue).average().orElse(0));
     }
 }

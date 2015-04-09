@@ -29,7 +29,7 @@ public class ReduceOperation<T> extends Operation<T> {
 
     @Override
     public T calculate(final List<T> input) {
-        LOGGER.debug("{}: calculate({},{})", getName(), input);
+        LOGGER.debug("{}: calculate({})", getName(), input);
         return input.parallelStream().reduce(operator.getIdentity(), operator);
     }
 

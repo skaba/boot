@@ -28,7 +28,7 @@ public abstract class BinaryMathOperation extends Operation<BigDecimal> {
      */
     @Override
     public BigDecimal calculate(final List<BigDecimal> input) {
-        LOGGER.debug("{}: calculate({},{})", getName(), input);
+        LOGGER.debug("{}: calculate({})", getName(), input);
         if (input.size() != 2) {
             throw new IllegalArgumentException(getName() + " needs exactly two operators");
         }
