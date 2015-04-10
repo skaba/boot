@@ -37,10 +37,10 @@ public abstract class OperationController<T> {
      * @param operatorName Operator
      * @return Result of the operation
      */
-    public T operation(final String operatorName, final List<T> elements) {
-        Operation<T> service = registry.getElement(operatorName);
-        Assert.notNull(service, "Unknown operator: " + operatorName);
-        LOGGER.debug("{} {} elements", service.getKey(), elements.size());
-        return service.calculate(elements);
+    protected T operation(final String operatorName, final List<T> elements) {
+        Operation<T> operation = registry.getElement(operatorName);
+        Assert.notNull(operation, "Unknown operation: " + operatorName);
+        LOGGER.debug("{} {} elements", operation.getKey(), elements.size());
+        return operation.calculate(elements);
     }
 }
