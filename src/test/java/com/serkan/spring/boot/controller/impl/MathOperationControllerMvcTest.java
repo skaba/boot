@@ -50,7 +50,7 @@ public class MathOperationControllerMvcTest extends AbstractMvcTest {
     }
 
     @Test
-    public void testUnSupportedethods() throws Exception {
+    public void testUnupportedethods() throws Exception {
         expectMethodNotSupported("/math/average", "n", "8", "2");
     }
 }

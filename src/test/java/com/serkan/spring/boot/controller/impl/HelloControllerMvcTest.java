@@ -29,7 +29,7 @@ public class HelloControllerMvcTest extends AbstractMvcTest {
     }
 
     @Test
-    public void testUnSupportedethods() throws Exception {
+    public void testUnsupportedethods() throws Exception {
         expectMethodNotSupported("/hello", "name", "serkan");
     }
 }
