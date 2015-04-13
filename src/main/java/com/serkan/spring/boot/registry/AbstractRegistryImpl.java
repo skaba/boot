@@ -15,8 +15,8 @@ import org.springframework.context.event.ContextClosedEvent;
 /**
  * Abstract implementation of {@link Registry} using {@link HashMap} as storage and deregistering elements when Spring context is closed.
  * 
- * @param <K>
- * @param <E>
+ * @param <K> Type of the key of the registry elements
+ * @param <E> Type of the registry elements
  */
 public abstract class AbstractRegistryImpl<K, E extends RegistryElement<K>> implements Registry<K, E>, ApplicationListener<ContextClosedEvent> {
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
@@ -45,7 +45,7 @@ public abstract class AbstractRegistryImpl<K, E extends RegistryElement<K>> impl
      * {@inheritDoc}
      */
     @Override
-    public void onApplicationEvent(final ContextClosedEvent event) {
+    public final void onApplicationEvent(final ContextClosedEvent event) {
         LOGGER.debug("onApplicationEvent({})", event);
         elements.clear();
     }
