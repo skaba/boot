@@ -10,18 +10,13 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.serkan.spring.boot.BootApplication;
+import com.serkan.spring.boot.AbstractITTest;
 import com.serkan.spring.boot.operation.Operation;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = BootApplication.class)
-public class AverageOperationITTest {
+public class AverageOperationITTest extends AbstractITTest {
     @Autowired
     @Qualifier("averageOperation")
     private Operation<BigDecimal> averageOperation;

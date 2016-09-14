@@ -14,11 +14,12 @@ import com.serkan.spring.boot.operator.math.impl.Multiply;
 import com.serkan.spring.boot.operator.text.impl.Concat;
 
 @SpringBootApplication
+// @EnableAutoConfiguration
 public class BootApplication {
 
     /**
      * Creates Add operation
-     * 
+     *
      * @param registry Operation registry
      * @param add Add operator
      * @return Add operation
@@ -30,7 +31,7 @@ public class BootApplication {
 
     /**
      * Creates Multiply operation
-     * 
+     *
      * @param registry Operation registry
      * @param multiply Multiply operator
      * @return Multiply operation
@@ -42,7 +43,7 @@ public class BootApplication {
 
     /**
      * Creates Concat operation
-     * 
+     *
      * @param registry Operation registry
      * @param concat Concat operator
      * @return Concat operation
@@ -54,7 +55,7 @@ public class BootApplication {
 
     /**
      * Runs the application
-     * 
+     *
      * @param args Command line arguments
      */
     public static void main(final String[] args) {
